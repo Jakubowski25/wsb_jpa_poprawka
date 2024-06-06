@@ -1,10 +1,11 @@
 package com.capgemini.wsb.persistence.entity;
 
+
+import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.Collection;
 
-import javax.persistence.*;
-import javax.validation.constraints.Min;
+
 
 @Entity
 @Table(name = "PATIENT")
@@ -33,7 +34,7 @@ public class PatientEntity {
 	@Column(nullable = false, length = 10)
 	private LocalDate dateOfBirth;
 
-	@OneToMany(mappedBy = "patient", cascade = {CascadeType.PERSIST, CascadeType.MERGE}, fetch = FetchType.LAZY)
+	@OneToMany(mappedBy = "patient", cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE}, fetch = FetchType.LAZY)
 	private Collection<VisitEntity> visits;
 
 	@ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE}, fetch = FetchType.LAZY)
